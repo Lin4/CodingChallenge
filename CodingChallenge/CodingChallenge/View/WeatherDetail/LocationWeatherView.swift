@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct LocationWeatherView: View {
-    @StateObject var vm: WeatherSearchViewModel
-    var location: SearchLocation
-    
+    @EnvironmentObject var coordinator: Coordinator
+   
     var body: some View {
-        WeatherDetailView(vm: vm, item: .searchLocation(location))
+        guard let searchLocation = coordinator.searchedLocation else {
+            return AnyView(Text("No location data available"))
+        }
+        return AnyView(
+            WeatherDetailView(vm: coordinator.viewModel, item: .searchLocation(searchLocation))
+        )
     }
 }
-enum WeatherItem {
-    case searchLocation(SearchLocation)
-    case currentWeather(CurrentWeather)
-}
-

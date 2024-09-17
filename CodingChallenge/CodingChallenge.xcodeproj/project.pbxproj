@@ -35,9 +35,10 @@
 		0876B53D2C9732B50041DDD3 /* SavedLocationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0876B53B2C9732B50041DDD3 /* SavedLocationDetail.swift */; };
 		0876B53E2C9732B50041DDD3 /* LocationWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0876B53C2C9732B50041DDD3 /* LocationWeatherView.swift */; };
 		0876B5412C9733320041DDD3 /* Locations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0876B53F2C9733320041DDD3 /* Locations.xcdatamodeld */; };
-		0876B5462C97620A0041DDD3 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0876B5452C97620A0041DDD3 /* MainCoordinator.swift */; };
+		0876B5462C97620A0041DDD3 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0876B5452C97620A0041DDD3 /* Coordinator.swift */; };
 		0876B54B2C9783970041DDD3 /* WeatherSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0876B5492C977FD50041DDD3 /* WeatherSearchViewModel.swift */; };
 		0876B54D2C9786D80041DDD3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0876B54C2C9786D80041DDD3 /* README.md */; };
+		0876B59F2C98D0F30041DDD3 /* CoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0876B59E2C98D0F30041DDD3 /* CoordinatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,9 +90,10 @@
 		0876B53B2C9732B50041DDD3 /* SavedLocationDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedLocationDetail.swift; sourceTree = "<group>"; };
 		0876B53C2C9732B50041DDD3 /* LocationWeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationWeatherView.swift; sourceTree = "<group>"; };
 		0876B5402C9733320041DDD3 /* Locations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Locations.xcdatamodel; sourceTree = "<group>"; };
-		0876B5452C97620A0041DDD3 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		0876B5452C97620A0041DDD3 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		0876B5492C977FD50041DDD3 /* WeatherSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSearchViewModel.swift; sourceTree = "<group>"; };
 		0876B54C2C9786D80041DDD3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0876B59E2C98D0F30041DDD3 /* CoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,7 +188,8 @@
 		0867B2172C94D9DD00B15E10 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				0876B5452C97620A0041DDD3 /* MainCoordinator.swift */,
+				0876B5452C97620A0041DDD3 /* Coordinator.swift */,
+				0876B59E2C98D0F30041DDD3 /* CoordinatorView.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				0876B52C2C972F8B0041DDD3 /* Double+Ext.swift in Sources */,
 				0876B51F2C972E650041DDD3 /* Location.swift in Sources */,
 				0876B52A2C972F6A0041DDD3 /* Color+Ext.swift in Sources */,
+				0876B59F2C98D0F30041DDD3 /* CoordinatorView.swift in Sources */,
 				0876B5232C972EAD0041DDD3 /* SearchLocation.swift in Sources */,
 				0876B5412C9733320041DDD3 /* Locations.xcdatamodeld in Sources */,
 				0867B2212C94DAEA00B15E10 /* WeatherService.swift in Sources */,
@@ -431,7 +435,7 @@
 				0876B5272C972EFC0041DDD3 /* weatherIcon.swift in Sources */,
 				0876B5322C9730A40041DDD3 /* HourlyForecastRow.swift in Sources */,
 				0876B5252C972ECB0041DDD3 /* HourlyForecast.swift in Sources */,
-				0876B5462C97620A0041DDD3 /* MainCoordinator.swift in Sources */,
+				0876B5462C97620A0041DDD3 /* Coordinator.swift in Sources */,
 				0876B51C2C972DEE0041DDD3 /* CoreDataManager.swift in Sources */,
 				0867B2292C94DB9B00B15E10 /* LocationManager.swift in Sources */,
 			);

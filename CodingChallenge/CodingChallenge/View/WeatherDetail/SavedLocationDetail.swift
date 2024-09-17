@@ -8,10 +8,23 @@
 import SwiftUI
 
 struct SavedLocationDetail: View {
-    @ObservedObject var vm: WeatherSearchViewModel
+    @EnvironmentObject var coordinator: Coordinator
     var location: CurrentWeather
     
     var body: some View {
-        WeatherDetailView(vm: vm, item: .currentWeather(location))
+        guard let currentWeather = coordinator.cWeather else {
+            return AnyView(Text("No weather data available"))
+        }
+        return AnyView(
+            WeatherDetailView(vm: coordinator.viewModel, item: .currentWeather(currentWeather))
+        )
     }
+}
+
+
+
+
+enum WeatherItem {
+    case searchLocation(SearchLocation)
+    case currentWeather(CurrentWeather)
 }

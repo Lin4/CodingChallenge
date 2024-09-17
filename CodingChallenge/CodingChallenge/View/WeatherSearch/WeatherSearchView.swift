@@ -9,16 +9,19 @@ import SwiftUI
 
 struct WeatherSearchView: View {
     @State private var searchText: String = ""
-    @ObservedObject var vm: WeatherSearchViewModel
+    @EnvironmentObject var coordinator: Coordinator
     
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
+    private var vm: WeatherSearchViewModel {
+        coordinator.viewModel
+    }
+    
     var body: some View {
-        NavigationStack {
             ZStack {
                 Color.theme.clearBackground.ignoresSafeArea()
                 
-                /// Main ScrollView for the content
+                // Main ScrollView for the content
                 ScrollView {
                     if vm.isLoading {
                         ProgressView("Loading locations...")
@@ -32,27 +35,33 @@ struct WeatherSearchView: View {
                         searchedLocationsView
                     }
                 }
-                .navigationTitle("Search Places")
+               // .navigationTitle("Search Places")
                 .searchable(text: $searchText, prompt: "Search for a city")
-                
-                .onChange(of: searchText) { oldvalue, cityName in
+                .onChange(of: searchText) { oldValue, newValue in
                     Task {
-                        await vm.performSearch(text: cityName)
+                        await vm.performSearch(text: newValue)
+                    }
+                }
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        EmptyView() // Removes the back button by not adding anything here
                     }
                 }
             }
-        }
+
         .task {
             await vm.fetchSavedLocationsWeather()
         }
     }
     
-    /// Compact layout (iPhone portrait or small screens)
+    // Compact layout (iPhone portrait or small screens)
     private var compactSavedLocationsView: some View {
-        ScrollView(.vertical) {  // Enable vertical scrolling
+        ScrollView(.vertical) {
             VStack(spacing: 5) {
                 ForEach(vm.savedLocationsWeather, id: \.id) { weather in
-                    NavigationLink(destination: SavedLocationDetail(vm: vm, location: weather)) {
+                    Button(action: {
+                        coordinator.goSavedWeatherDetail(vm, weather)
+                    }) {
                         SavedLocationsRow(currentWeather: weather)
                     }
                 }
@@ -61,12 +70,14 @@ struct WeatherSearchView: View {
         .padding(.horizontal)
     }
     
-    /// Regular layout (iPad or iPhone landscape) with a grid structure
+    // Regular layout (iPad or iPhone landscape) with a grid structure
     private var regularSavedLocationsView: some View {
-        ScrollView(.vertical) {  // Enable vertical scrolling
+        ScrollView(.vertical) {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 16) {
                 ForEach(vm.savedLocationsWeather, id: \.id) { weather in
-                    NavigationLink(destination: SavedLocationDetail(vm: vm, location: weather)) {
+                    Button(action: {
+                        coordinator.goSavedWeatherDetail(vm, weather)
+                    }) {
                         SavedLocationsRow(currentWeather: weather)
                     }
                 }
@@ -75,12 +86,14 @@ struct WeatherSearchView: View {
         }
     }
     
-    /// View for searched locations
+    // View for searched locations
     private var searchedLocationsView: some View {
-        ScrollView(.vertical) {  // Enable vertical scrolling
+        ScrollView(.vertical) {
             VStack(spacing: 1) {
                 ForEach(vm.searchedLocations) { location in
-                    NavigationLink(destination: LocationWeatherView(vm: vm, location: location)) {
+                    Button(action: {
+                        coordinator.goSearchWeatherDetail(vm, location)
+                    }) {
                         HStack {
                             Text(location.displayFullPlaceName)
                                 .foregroundColor(.theme.accent)
@@ -96,5 +109,3 @@ struct WeatherSearchView: View {
         .padding(.horizontal)
     }
 }
-
-

@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-    @MainActor
+@MainActor
 class WeatherSearchViewModel: ObservableObject {
     @Published var currentWeather: CurrentWeather? = nil
     @Published var forecastWeather: HourlyForecast? = nil

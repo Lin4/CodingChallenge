@@ -136,5 +136,3 @@ struct WeatherDetailView: View {
         }
     }
 }
-
-
